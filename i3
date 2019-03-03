@@ -150,3 +150,8 @@ assign [class="Slack"] 2
 bindsym Mod1+F3 exec --no-startup-id pactl set-sink-volume 0 +10% && pkill -SIGRTMIN+10 i3blocks
 bindsym Mod1+F2 exec --no-startup-id pactl set-sink-volume 0 -10% && pkill -SIGRTMIN+10 i3blocks
 bindsym Mod1+F1 exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -SIGRTMIN+10 i3blocks
+
+# Bind keys for media controls
+bindsym Mod1+F5 exec playerctl play-pause
+bindsym Mod1+F6 exec playerctl previous
+bindsym Mod1+F7 exec playerctl next
