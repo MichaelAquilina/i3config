@@ -144,6 +144,8 @@ default_border pixel 3
 # Lock screen
 bindsym Mod1+l exec i3lock
 
+assign [class="Slack"] 2
+
 # Bind keys for volume control
 bindsym Mod1+F3 exec --no-startup-id pactl set-sink-volume 0 +10%
 bindsym Mod1+F2 exec --no-startup-id pactl set-sink-volume 0 -10%
