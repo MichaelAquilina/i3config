@@ -1,15 +1,3 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
-#
-# This config file uses keycodes (bindsym) and was written for the QWERTY
-# layout.
-#
-# To get a config file with the same key positions, but for your current
-# layout, use the i3-config-wizard
-#
-#
-
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 10
@@ -27,15 +15,10 @@ floating_modifier Mod1
 # kill focused window
 bindsym Mod1+Shift+q kill
 
-# application shortucts
+# application shortcuts
 bindsym Mod1+d exec rofi -show drun
 bindsym Mod1+p exec rofi -show pass -modi pass:"$HOME/rofi-pass.sh"
 bindsym Mod1+Return exec gnome-terminal
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop
 
 # alternatively, you can use the cursor keys:
 bindsym Mod1+Left focus left
@@ -73,14 +56,7 @@ bindsym Mod1+space focus mode_toggle
 bindsym Mod1+a focus parent
 
 # focus the child container
-#bindsym Mod1+d focus child
-
-# move the currently focused window to the scratchpad
-bindsym Mod1+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym Mod1+minus scratchpad show
+bindsym Mod1+c focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -94,7 +70,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
 
 # switch to workspace
 bindsym Mod1+1 workspace $ws1
@@ -157,7 +132,7 @@ bindsym Mod1+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+        status_command i3blocks
         position top
 }
 
