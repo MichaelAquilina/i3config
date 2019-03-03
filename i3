@@ -139,6 +139,8 @@ bar {
 # Set background image
 exec feh --bg-scale "/home/michael/Documents/Bloodborne Weapons.png"
 
+default_border pixel 3
+
 # Lock screen
 bindsym Mod1+l exec i3lock
 
