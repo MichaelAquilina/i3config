@@ -3,7 +3,7 @@
 font pango:DejaVu Sans Mono 10
 
 # start dunst notification daemon
-exec_always --no-startup-id killall dunst && dunst -config "~/.config/dunst/dunstrc"
+exec_always --no-startup-id killall dunst && dunst
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
