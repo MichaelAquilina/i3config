@@ -11,7 +11,7 @@ floating_modifier Mod1
 focus_follows_mouse no
 
 # kill focused window
-bindsym Mod1+Shift+q kill
+bindsym Mod1+q kill
 
 # application shortcuts
 bindsym Mod1+d exec rofi -show drun
