@@ -8,7 +8,12 @@ exec_always --no-startup-id killall dunst && dunst -config "~/.config/dunst/duns
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
 
+# dont focus windows when the mouse hovers over them
 focus_follows_mouse no
+
+# Lock screen
+exec_always --no-startup-id xautolock -time 5 -locker "i3lock -d -c 000000"
+bindsym Mod1+l exec i3lock -d -c 000000
 
 # kill focused window
 bindsym Mod1+q kill
@@ -133,8 +138,6 @@ exec feh --bg-scale "/home/michael/Documents/Bloodborne Weapons.png"
 
 default_border pixel 3
 
-# Lock screen
-bindsym Mod1+l exec i3lock
 
 assign [class="Slack"] 2
 
