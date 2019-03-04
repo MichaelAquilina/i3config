@@ -17,7 +17,7 @@ bindsym Mod1+Shift+q kill
 
 # application shortcuts
 bindsym Mod1+d exec rofi -show drun
-bindsym Mod1+p exec rofi -show pass -modi pass:"$HOME/rofi-pass.sh"
+bindsym Mod1+p exec $HOME/bin/rofi-pass
 bindsym Mod1+Return exec gnome-terminal
 
 # alternatively, you can use the cursor keys:
