@@ -2,12 +2,8 @@
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans Mono 10
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn't scale on retina/hidpi displays.
+# start dunst notification daemon
+exec --no-startup-id dunst -config "~/.config/dunst/dunstrc"
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
