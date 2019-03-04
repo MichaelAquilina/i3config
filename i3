@@ -16,7 +16,7 @@ bindsym Mod1+Shift+q kill
 # application shortcuts
 bindsym Mod1+d exec rofi -show drun
 bindsym Mod1+p exec $HOME/bin/rofi-pass
-bindsym Mod1+Return exec gnome-terminal
+bindsym Mod1+Return exec tilix
 
 # alternatively, you can use the cursor keys:
 bindsym Mod1+Left focus left
