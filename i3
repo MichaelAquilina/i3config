@@ -8,6 +8,8 @@ exec --no-startup-id dunst -config "~/.config/dunst/dunstrc"
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
 
+focus_follows_mouse no
+
 # kill focused window
 bindsym Mod1+Shift+q kill
 
