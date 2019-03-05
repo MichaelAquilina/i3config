@@ -23,13 +23,13 @@ bindsym Mod1+d exec rofi -show drun
 bindsym Mod1+p exec $HOME/bin/rofi-pass
 bindsym Mod1+Return exec tilix
 
-# alternatively, you can use the cursor keys:
+# Don't wrap between containers when moving
+focus_wrapping no
 bindsym Mod1+Left focus left
 bindsym Mod1+Down focus down
 bindsym Mod1+Up focus up
 bindsym Mod1+Right focus right
 
-# alternatively, you can use the cursor keys:
 bindsym Mod1+Shift+Left move left
 bindsym Mod1+Shift+Down move down
 bindsym Mod1+Shift+Up move up
