@@ -12,7 +12,7 @@ floating_modifier Mod1
 focus_follows_mouse no
 
 # Lock screen
-exec_always --no-startup-id xautolock -time 5 -locker $HOME/bin/lock_screen.sh
+exec_always --no-startup-id kilall xautolock && xautolock -time 5 -locker $HOME/bin/lock_screen.sh
 bindsym Mod1+l exec  $HOME/bin/lock_screen.sh
 
 # kill focused window
