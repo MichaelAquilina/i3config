@@ -22,6 +22,8 @@ bindsym Mod1+q kill
 bindsym Mod1+d exec rofi -show drun
 bindsym Mod1+p exec $HOME/bin/rofi-pass
 bindsym Mod1+o exec $HOME/bin/monitor_layout.sh
+bindsym Print exec flameshot full -p $HOME/Pictures
+bindsym Shift+Print exec flameshot gui -p $HOME/Pictures
 bindsym Mod1+Return exec tilix
 
 # Don't wrap between containers when moving
