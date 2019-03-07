@@ -143,6 +143,7 @@ bar {
 exec feh --bg-scale "/home/michael/Documents/Bloodborne Weapons.png"
 
 default_border pixel 3
+for_window [class=.*] border pixel 3
 
 
 assign [class="Slack"] 2
