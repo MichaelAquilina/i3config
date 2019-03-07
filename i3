@@ -3,7 +3,7 @@
 font pango:DejaVu Sans Mono 10
 
 # Use compton for vsync, alpha transparency etc..
-exec --no-startup-id compton --backend glx --vsync opengl-swc
+exec_always --no-startup-id compton --backend glx --vsync opengl-swc
 
 # start dunst notification daemon
 exec_always --no-startup-id killall dunst && dunst
