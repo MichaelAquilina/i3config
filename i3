@@ -145,6 +145,14 @@ exec feh --bg-scale "/home/michael/Documents/Bloodborne Weapons.png"
 default_border pixel 3
 for_window [class=.*] border pixel 3
 
+# class                 border  backgr. text    indicator child_border
+client.focused          #FF0000 #285577 #ffffff #2e9ef4   #FF0000
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
 
 assign [class="Slack"] 2
 
