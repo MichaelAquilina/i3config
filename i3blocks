@@ -39,7 +39,7 @@ command=date '+📅 %Y-%m-%d %H:%M'
 interval=5
 
 [volume]
-label=♪
+label=🎵
 interval=once
 signal=10
 #STEP=5%
@@ -94,7 +94,7 @@ interval=5
 # see the script for details.
 [cpu_usage]
 label=CPU
-interval=10
+interval=3
 min_width=CPU 100.00%
 #separator=false
 
