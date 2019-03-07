@@ -1,9 +1,12 @@
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 10
+font pango:Roboto Sans Mono 10
 
 # Use compton for vsync, alpha transparency etc..
 exec_always --no-startup-id compton --backend glx --vsync opengl-swc
+
+# Set minimum brightness that can be set by light
+exec --no-startup-id light -N 5
 
 # start dunst notification daemon
 exec_always --no-startup-id killall dunst && dunst
