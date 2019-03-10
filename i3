@@ -22,7 +22,7 @@ exec_always --no-startup-id killall polybar && polybar top --config=$HOME/.confi
 
 # Lock screen
 exec_always --no-startup-id killall xautolock && xautolock -time 5 -locker $HOME/bin/lock_screen.sh
-bindsym Mod1+l exec  $HOME/bin/lock_screen.sh
+bindsym Mod1+l exec $HOME/bin/lock_screen.sh
 
 # kill focused window
 bindsym Mod1+q kill
