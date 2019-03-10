@@ -17,8 +17,11 @@ floating_modifier Mod1
 # dont focus windows when the mouse hovers over them
 focus_follows_mouse no
 
+# Run polybar
+exec_always --no-startup-id killall polybar && polybar top --config=$HOME/.config/polybar/config
+
 # Lock screen
-exec_always --no-startup-id kilall xautolock && xautolock -time 5 -locker $HOME/bin/lock_screen.sh
+exec_always --no-startup-id killall xautolock && xautolock -time 5 -locker $HOME/bin/lock_screen.sh
 bindsym Mod1+l exec  $HOME/bin/lock_screen.sh
 
 # kill focused window
@@ -134,13 +137,6 @@ mode "resize" {
 }
 
 bindsym Mod1+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3blocks
-        position top
-}
 
 # Set background image
 exec feh --bg-scale "$HOME/Documents/Bloodborne Weapons.png"
