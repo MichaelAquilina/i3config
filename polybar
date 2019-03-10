@@ -136,29 +136,17 @@ interface = wlp2s0
 interval = 2.0
 ping-interval = 10
 
-format-connected = <label-connected> <ramp-signal>
-label-connected = %essid%
-label-disconnected =    not connected
+format-connected = <label-connected>
+label-connected =  %essid% %signal%% %downspeed:9%
+label-disconnected =   not connected
 label-disconnected-foreground = #66
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-
-animation-packetloss-0 = 
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 
-animation-packetloss-1-foreground = ${bar/top.foreground}
-animation-packetloss-framerate = 500
 
 [module/wired-network]
 type = internal/network
-interface = net0
+interface = enp0s20u2u2
 interval = 2.0
 
-label-connected =   %local_ip%
+label-connected =   %local_ip% %downspeed:9:%
 label-disconnected = Ethernet disconnected
 label-disconnected-foreground = #66
 
