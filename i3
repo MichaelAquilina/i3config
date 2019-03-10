@@ -3,7 +3,7 @@
 font pango:Roboto Sans Mono 10
 
 # Use compton for vsync, alpha transparency etc..
-exec_always --no-startup-id compton --backend glx --vsync opengl-swc
+exec_always --no-startup-id killall compton && compton --backend glx --vsync opengl-swc
 
 # Set minimum brightness that can be set by light
 exec --no-startup-id light -N 5
