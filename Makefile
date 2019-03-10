@@ -5,3 +5,5 @@ install:
 	ln -sf $$PWD/compton.conf $$HOME/.config/compton.conf
 	ln -sf $$PWD/rofi $$HOME/.config/rofi/config
 	ln -sf $$PWD/lock_screen.sh $$HOME/bin/lock_screen.sh
+	ln -sf $$PWD/get-running-sink.sh $$HOME/bin/get-running-sink.sh
+	ln -sf $$PWD/polybar $$HOME/.config/polybar/config
