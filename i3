@@ -5,6 +5,9 @@ font pango:Roboto Sans Mono 10
 # Use compton for vsync, alpha transparency etc..
 exec_always --no-startup-id (killall compton || true) && compton --backend glx --vsync opengl-swc
 
+# Workaround to auto set the dpi
+exec_always --no-startup-id ~/bin/set_dpi.sh
+
 # Set minimum brightness that can be set by light
 exec --no-startup-id light -N 5
 
