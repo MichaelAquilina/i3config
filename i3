@@ -139,7 +139,7 @@ mode "resize" {
 bindsym Mod1+r mode "resize"
 
 # Set background image
-exec feh --bg-scale "$HOME/Documents/Bloodborne Weapons.png"
+exec_always --no-startup-id (killall feh || true) && feh --bg-scale "$HOME/Documents/Bloodborne Weapons.png"
 
 default_border pixel 3
 for_window [class=.*] border pixel 3
