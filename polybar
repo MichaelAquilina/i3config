@@ -5,8 +5,11 @@ accent = #fba922
 enable-ipc = true
 width = 100%
 height = 34
-tray-maxsize = 1000
-dpi = -1
+tray-maxsize = 100
+tray-padding = 8
+tray-position = right
+dpi = 0
+screenchange-reload = true
 
 ;background = #222
 background = #1f1f1f
@@ -15,8 +18,7 @@ foreground = #eee
 border-bottom-size = 1
 border-bottom-color = #333
 
-overline-color = ${self.background}
-underline-size = 10
+underline-size = 4
 underline-color = ${self.background}
 
 padding-left = 0
