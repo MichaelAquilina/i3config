@@ -89,9 +89,9 @@ card = intel_backlight
 type = internal/cpu
 interval = 1.5
 
-format = <label> <ramp-coreload>
+format = <label>  <ramp-coreload>
 
-label = CPU
+label = CPU %percentage%
 label-foreground = #99
 
 ramp-coreload-0 = ▁
