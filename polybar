@@ -37,6 +37,9 @@ modules-right = volume backlight cpu memory wireless-network wired-network batte
 type = custom/script
 
 exec = playerctl metadata -f '{{album}} - {{title}}'
+click-left = playerctl previous
+click-middle = playerctl play-pause
+click-right = playerctl next
 
 [module/i3]
 type = internal/i3
