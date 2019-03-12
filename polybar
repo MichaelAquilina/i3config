@@ -41,6 +41,8 @@ click-left = playerctl previous
 click-middle = playerctl play-pause
 click-right = playerctl next
 
+format-foreground= #1ED760
+
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
