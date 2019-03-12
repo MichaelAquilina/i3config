@@ -35,6 +35,7 @@ modules-right = volume backlight cpu memory wireless-network wired-network batte
 
 [module/playerctl]
 type = custom/script
+interval = 1
 
 exec = playerctl metadata -f '{{album}} - {{title}}'
 click-left = playerctl previous
