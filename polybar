@@ -1,3 +1,6 @@
+# See the following url for configuration details
+# https://github.com/jaagr/polybar/wiki/Configuration
+
 [colors]
 accent = #fba922
 
