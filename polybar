@@ -50,7 +50,7 @@ format-foreground = #fba922
 type = custom/script
 interval = 1
 
-exec = playerctl metadata -f '{{album}} - {{title}}'
+exec = playerctl metadata -f '{{artist}} - {{album}} - {{title}}'
 click-left = playerctl previous
 click-middle = playerctl play-pause
 click-right = playerctl next
