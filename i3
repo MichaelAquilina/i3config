@@ -159,12 +159,17 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 
-assign [class="Slack"] 2
+assign [class="Slack"] $ws2
+assign [class="Spotify"] $ws3
 
 # Bind keys for volume control
-bindsym Mod1+F3 exec --no-startup-id pactl set-sink-volume $(get-running-sink.sh) +5% && pkill -SIGRTMIN+10 i3blocks
-bindsym Mod1+F2 exec --no-startup-id pactl set-sink-volume $(get-running-sink.sh) -5% && pkill -SIGRTMIN+10 i3blocks
-bindsym Mod1+F1 exec --no-startup-id pactl set-sink-mute $(get-running-sink.sh) toggle && pkill -SIGRTMIN+10 i3blocks
+bindsym Mod1+F3 exec --no-startup-id pactl set-sink-volume $(get-running-sink.sh) +5%
+bindsym Mod1+F2 exec --no-startup-id pactl set-sink-volume $(get-running-sink.sh) -5%
+bindsym Mod1+F1 exec --no-startup-id pactl set-sink-mute $(get-running-sink.sh) toggle
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(get-running-sink.sh) +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(get-running-sink.sh) -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(get-running-sink.sh) toggle
 
 # Bind keys for setting brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
