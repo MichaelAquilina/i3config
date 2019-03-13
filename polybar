@@ -36,7 +36,15 @@ font-3 = MaterialIcons-Regular:size=14;4
 
 modules-left = i3 playerctl
 modules-center = clock
-modules-right = volume backlight cpu memory wireless-network wired-network battery
+modules-right = zypper volume backlight cpu memory wireless-network wired-network battery
+
+[module/zypper]
+type = custom/script
+interval = 60
+
+exec = $HOME/bin/zypper_check.sh
+
+format-foreground = #fba922
 
 [module/playerctl]
 type = custom/script
