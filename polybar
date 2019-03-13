@@ -110,7 +110,7 @@ interval = 1.5
 
 format = <label>  <ramp-coreload>
 
-label = CPU %percentage%
+label = CPU %percentage:3%
 label-foreground = #99
 
 ramp-coreload-0 = ▁
@@ -139,7 +139,7 @@ label = RAM
 label-font = 1
 label-foreground = #99
 
-bar-used-width = 15
+bar-used-width = 10
 bar-used-gradient = true
 bar-used-foreground-0 = #449f3d
 bar-used-foreground-1 = #2f8419
