@@ -174,3 +174,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 bindsym Mod1+F5 exec playerctl previous
 bindsym Mod1+F6 exec playerctl play-pause
 bindsym Mod1+F7 exec playerctl next
+
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
