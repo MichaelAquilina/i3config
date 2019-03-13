@@ -171,6 +171,6 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 
 # Bind keys for media controls
-bindsym Mod1+F5 exec playerctl play-pause
-bindsym Mod1+F6 exec playerctl previous
+bindsym Mod1+F5 exec playerctl previous
+bindsym Mod1+F6 exec playerctl play-pause
 bindsym Mod1+F7 exec playerctl next
