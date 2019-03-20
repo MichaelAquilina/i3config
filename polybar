@@ -29,14 +29,13 @@ padding-right = 5
 module-margin-left = 3
 module-margin-right = 3
 
-font-0 = DroidSans-Mono:size=11;0
-font-1 = FontAwesome:size=11;0
-font-2 = DejaVu Sans:size=10;0
-font-3 = MaterialIcons-Regular:size=14;4
+font-0 = DroidSans-Mono:size=11;3
+font-1 = FontAwesome:size=11;3
+font-2 = DejaVu Sans:size=10;3
 
 modules-left = i3 playerctl
-modules-center = clock
-modules-right = zypper volume backlight cpu memory battery
+modules-center = date
+modules-right = volume backlight cpu memory battery
 
 [module/zypper]
 type = custom/script
@@ -92,13 +91,7 @@ label-visible-padding = 4
 
 [module/backlight]
 type = internal/backlight
-format = <ramp> <label>
-
-ramp-0 = 🌕
-ramp-1 = 🌔
-ramp-2 = 🌓
-ramp-3 = 🌒
-ramp-4 = 🌑
+format = 🌑 <label>
 
 ; Use the following command to list available cards:
 ; $ ls -1 /sys/class/backlight/
@@ -108,7 +101,7 @@ card = intel_backlight
 type = internal/cpu
 interval = 1.5
 
-format = <label>  <ramp-coreload>
+format =  <label>  <ramp-coreload>
 
 label = CPU %percentage:3%
 label-foreground = #99
@@ -174,13 +167,13 @@ label-connected =   %local_ip% %downspeed:9:%
 label-disconnected = Ethernet disconnected
 label-disconnected-foreground = #66
 
-[module/clock]
+[module/date]
 type = internal/date
 interval = 5
 format-padding = 5
 format-background = #000
-format-foreground = #fba922
-date =   %Y-%m-%d%%{F-}  %H:%M%%{F-}
+date =  %{F#fff} %A %Y-%m-%d %%{F#fba922} %H:%M%
+click-left = gnome-calendar
 
 [module/volume]
 type = internal/pulseaudio
@@ -188,14 +181,9 @@ speaker-mixer = Speaker
 headphone-mixer = Headphone
 headphone-id = 9
 
-format-volume = <ramp-volume> <label-volume>
-label-muted =  muted
+format-volume =   <label-volume>
+label-muted = muted
 label-muted-foreground = #66
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
 
 [module/battery]
 type = internal/battery
@@ -226,10 +214,3 @@ animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-framerate = 750
-
-[module/xwindow]
-type = internal/xwindow
-label-maxlen = 75
-label-foreground = #bbb
-
-; vim:ft=dosini
