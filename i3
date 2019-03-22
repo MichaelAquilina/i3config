@@ -34,7 +34,7 @@ bindsym Mod1+l exec $HOME/bin/lock_screen.sh
 bindsym Mod1+q kill
 
 # application shortcuts
-bindsym Mod1+d exec rofi -show drun
+bindsym Mod1+d exec "rofi -show drun -modi drun,calc"
 bindsym Mod1+p exec $HOME/bin/rofi-pass
 bindsym Mod1+o exec $HOME/bin/monitor_layout.sh
 bindsym Print exec flameshot full -p $HOME/Pictures
