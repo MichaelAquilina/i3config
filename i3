@@ -149,6 +149,8 @@ exec_always --no-startup-id (killall feh || true) && feh --bg-scale "$HOME/Docum
 
 default_border pixel 3
 for_window [class=.*] border pixel 3
+for_window [class="Gnome-calculator"] floating enable
+for_window [class="Gnome-calendar"] move container workspace $ws4
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #FF0000 #285577 #ffffff #2e9ef4   #FF0000
