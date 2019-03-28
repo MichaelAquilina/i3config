@@ -49,7 +49,7 @@ format-foreground = #fba922
 type = custom/script
 interval = 1
 
-exec = playerctl metadata -f '[{{status}}]  {{artist}} - {{album}} - %{F#1ED760}{{title}}' | sed "s/\[Playing\]//" | sed "s/\[Paused\]//"
+exec = playerctl metadata -f '[{{status}}]  %{F#1ED760}{{artist}}%{F-} - %{F#1ED760}{{album}}%{F-} - %{F#1EFF60}{{title}}' | sed "s/\[Playing\]//" | sed "s/\[Paused\]//"
 click-left = playerctl previous
 click-middle = playerctl play-pause
 click-right = playerctl next
