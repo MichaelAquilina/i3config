@@ -38,10 +38,10 @@ modules-center = date
 modules-right = monitors volume backlight cpu memory battery
 
 [module/monitors]
-" Run this at an interval so that it can auto-detect changes to the state
-" of connnected and disconected monitors
+# Run this at an interval so that it can auto-detect changes to the state
+# of connnected and disconected monitors
 type = custom/script
-interval = 3
+interval = 1
 
 exec = $HOME/bin/setup_monitors.py setup 2>/dev/null
 

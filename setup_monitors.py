@@ -8,7 +8,7 @@ import subprocess
 
 
 def get_setup_key(monitors: Dict[str, str]) -> str:
-    return " ".join(sorted(m for m, s in monitors.items() if s == "connected"))
+    return " ".join(sorted(m for m, s in monitors.items() if s["state"] == "connected"))
 
 
 def get_monitors() -> Dict[str, str]:
@@ -21,20 +21,31 @@ def get_monitors() -> Dict[str, str]:
 
     for line in result.stdout.decode("utf8").split("\n"):
         if "connected" in line:
-            name = line.split(" ")[0]
-            state = line.split(" ")[1]
-            monitors[name] = state
+            tokens = line.split(" ")
+            name = tokens[0]
+            state = tokens[1]
+            active = "x" in tokens[2]
+
+            monitors[name] = {
+                "state": state,
+                "active": active,
+            }
 
     return monitors
 
 
+def restart_i3():
+    subprocess.run(["i3-msg", "restart"])
+
+
 def set_xrandr(data, monitors):
-    params = ["xrandr"]
+    params = ["xrandr", "--nograb"]
     used_monitors = set()
 
     for entry in data:
         params.extend(["--output", entry["output"]])
         params.extend(entry["params"])
+
         used_monitors.add(entry["output"])
 
     for monitor in monitors:
@@ -52,7 +63,7 @@ def show_rofi():
     connected or disconnected.
     """
     monitors = get_monitors()
-    connected = [m for m, s in monitors.items() if s == "connected"]
+    connected = [m for m, s in monitors.items() if s["state"] == "connected"]
 
     rofi_data = {}
 
@@ -101,6 +112,7 @@ def show_rofi():
         data = rofi_data[selection]
 
         set_xrandr(data, monitors)
+        restart_i3()
 
         target = get_setup_key(monitors)
         path = os.path.expanduser("~/.xrandr_config.json")
@@ -130,6 +142,7 @@ def setup():
     """
     monitors = get_monitors()
     target = get_setup_key(monitors)
+    print(target)
 
     path = os.path.expanduser("~/.xrandr_config.json")
 
@@ -138,16 +151,20 @@ def setup():
 
     if target in data:
         set_xrandr(data[target], monitors)
+        return
     else:
         print("Unable to find matching configuration. Will turn on all connected monitors", file=sys.stderr)
-        params = ["xrandr"]
-        for key, state in monitors.items():
-            params.extend(["--output", key])
-            params.append("--auto" if state == "connected" else "--off")
+        data = []
+        for key, mon in monitors.items():
+            data.append({
+                "output": key,
+                "params": [
+                    "--auto" if mon["state"] == "connected" else "--off"
+                ],
+            })
 
-        subprocess.run(params)
+        set_xrandr(data, monitors)
 
-    print(target)
 
 if __name__ == "__main__":
     main()
