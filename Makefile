@@ -10,6 +10,7 @@ install:
 	ln -sf $$PWD/compton.conf $$HOME/.config/compton.conf
 	ln -sf $$PWD/rofi $$HOME/.config/rofi/config
 	ln -sf $$PWD/lock_screen.sh $$HOME/bin/lock_screen.sh
+	ln -sf $$PWD/setup_monitors.py $$HOME/bin/setup_monitors.py
 	ln -sf $$PWD/set_dpi.sh $$HOME/bin/set_dpi.sh
 	ln -sf $$PWD/zypper_check.sh $$HOME/bin/zypper_check.sh
 	ln -sf $$PWD/get-running-sink.sh $$HOME/bin/get-running-sink.sh
