@@ -38,6 +38,8 @@ modules-center = date
 modules-right = volume backlight cpu memory battery
 
 [module/monitors]
+" Run this at an interval so that it can auto-detect changes to the state
+" of connnected and disconected monitors
 type = custom/script
 interval = 3
 
