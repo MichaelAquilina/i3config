@@ -33,17 +33,15 @@ font-0 = DroidSans-Mono:size=11;3
 font-1 = FontAwesome:size=11;3
 font-2 = DejaVu Sans:size=10;3
 
-modules-left = i3 playerctl
+modules-left = i3 playerctl monitors
 modules-center = date
 modules-right = volume backlight cpu memory battery
 
-[module/zypper]
+[module/monitors]
 type = custom/script
-interval = 60
+interval = 3
 
-exec = $HOME/bin/zypper_check.sh
-
-format-foreground = #fba922
+exec = $HOME/bin/setup_monitors.py
 
 [module/playerctl]
 type = custom/script
