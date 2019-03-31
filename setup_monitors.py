@@ -1,8 +1,14 @@
 #! /usr/bin/python3
 from typing import Dict
+import argparse
 import os
+import json
 import sys
 import subprocess
+
+
+def get_setup_key(monitors: Dict[str, str]) -> str:
+    return " ".join(sorted(m for m, s in monitors.items() if s == "connected"))
 
 
 def get_monitors() -> Dict[str, str]:
@@ -22,53 +28,126 @@ def get_monitors() -> Dict[str, str]:
     return monitors
 
 
+def set_xrandr(data, monitors):
+    params = ["xrandr"]
+    used_monitors = set()
+
+    for entry in data:
+        params.extend(["--output", entry["output"]])
+        params.extend(entry["params"])
+        used_monitors.add(entry["output"])
+
+    for monitor in monitors:
+        if monitor not in used_monitors:
+            params.extend(["--output", monitor, "--off"])
+
+    print(f"Running {params}", file=sys.stderr)
+    subprocess.run(params)
+
+
+def show_rofi():
+    """
+    Shows rofi launcher that allows user to select desired setup for list of connected
+    monitors. Will save the configuration to xrandr_config.json for auto-setup when
+    connected or disconnected.
+    """
+    monitors = get_monitors()
+    connected = [m for m, s in monitors.items() if s == "connected"]
+
+    rofi_data = {}
+
+    for monitor in connected:
+        rofi_data[f"{monitor}"] = [
+            {
+                "output": monitor,
+                "params": [
+                    "--auto",
+                ],
+            }
+        ]
+
+    for m1 in connected:
+        for m2 in connected:
+            if m1 == m2:
+                continue
+
+            rofi_data[f"{m1} -> {m2}"] = [
+                {
+                    "output": m1,
+                    "params": [
+                        "--auto",
+                        "--left-of", m2,
+                    ],
+                },
+                {
+                    "output": m2,
+                    "params": [
+                        "--auto",
+                    ],
+                }
+            ]
+
+    data = "\n".join(rofi_data.keys()).encode("utf8")
+
+    result = subprocess.run([
+        "rofi",
+        "-dmenu", "-p",
+        "Monitor setup 2", "-a", "0", "-no-custom"], input=data, stdout=subprocess.PIPE)
+
+    selection = result.stdout.decode("utf-8").strip()
+
+    if selection:
+        print(selection)
+        data = rofi_data[selection]
+
+        set_xrandr(data, monitors)
+
+        target = get_setup_key(monitors)
+        path = os.path.expanduser("~/.xrandr_config.json")
+
+        with open(path, "w") as fp:
+            json.dump({target: data}, fp)
+
+
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("command")
+
+    args = parser.parse_args()
+
+    if args.command == "setup":
+        setup()
+    elif args.command == "rofi":
+        show_rofi()
+
+
+def setup():
     """
     Attempts to setup monitors using previously selected mechanism for the current state.
     If no previous mechanism was set for the current state - turn on all connected monitors.
 
     A state is defined as the list of currently connected monitors.
     """
-
     monitors = get_monitors()
-    target = " ".join(sorted(m for m, s in monitors.items() if s == "connected"))
-    print(target, file=sys.stderr)
+    target = get_setup_key(monitors)
 
-    path = os.path.expanduser("~/.xrandr_config")
+    path = os.path.expanduser("~/.xrandr_config.json")
 
-    try:
-        with open(path, "r") as fp:
-            data = fp.read()
+    with open(path, "r")  as fp:
+        data = json.load(fp)
 
-        for line in data.split("\n"):
-            if not line:
-                continue
+    if target in data:
+        set_xrandr(data[target], monitors)
+    else:
+        print("Unable to find matching configuration. Will turn on all connected monitors", file=sys.stderr)
+        params = ["xrandr"]
+        for key, state in monitors.items():
+            params.extend(["--output", key])
+            params.append("--auto" if state == "connected" else "--off")
 
-            tokens = line.split(":")
-            key = tokens[0]
-            command = tokens[1]
-
-            print(f"Matching with {key}", file=sys.stderr)
-            if key == target:
-                print(f"Match Found. Running '{command}'", file=sys.stderr)
-                subprocess.run(command.split(" "))
-                return
-
-    except FileNotFoundError:
-        print(f"No existing {path}", file=sys.stderr)
-
-    print("Unable to find matching configuration. Will turn on all connected monitors", file=sys.stderr)
-
-    params = ["xrandr"]
-    for key, state in monitors.items():
-        params.extend(["--output", key])
-        params.append("--auto" if state == "connected" else "--off")
-
-    print(f"Running {params}", file=sys.stderr)
-    subprocess.run(params)
+        subprocess.run(params)
 
     print(target)
-
 
 if __name__ == "__main__":
     main()

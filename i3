@@ -38,7 +38,7 @@ bindsym Mod1+q kill
 # application shortcuts
 bindsym Mod1+d exec "rofi -show drun -modi drun,calc"
 bindsym Mod1+p exec $HOME/bin/rofi-pass
-bindsym Mod1+o exec $HOME/bin/monitor_layout.sh
+bindsym Mod1+o exec $HOME/bin/setup_monitors.py rofi
 bindsym Print exec flameshot full -p $HOME/Pictures
 bindsym Shift+Print exec flameshot gui -p $HOME/Pictures
 bindsym Mod1+Return exec tilix

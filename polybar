@@ -33,9 +33,9 @@ font-0 = DroidSans-Mono:size=11;3
 font-1 = FontAwesome:size=11;3
 font-2 = DejaVu Sans:size=10;3
 
-modules-left = i3 playerctl monitors
+modules-left = i3 playerctl
 modules-center = date
-modules-right = volume backlight cpu memory battery
+modules-right = monitors volume backlight cpu memory battery
 
 [module/monitors]
 " Run this at an interval so that it can auto-detect changes to the state
@@ -43,7 +43,7 @@ modules-right = volume backlight cpu memory battery
 type = custom/script
 interval = 3
 
-exec = $HOME/bin/setup_monitors.py
+exec = $HOME/bin/setup_monitors.py setup 2>/dev/null
 
 [module/playerctl]
 type = custom/script
