@@ -146,8 +146,11 @@ def setup():
 
     path = os.path.expanduser("~/.xrandr_config.json")
 
-    with open(path, "r")  as fp:
-        data = json.load(fp)
+    try:
+        with open(path, "r")  as fp:
+            data = json.load(fp)
+    except FileNotFoundError:
+        data = {}
 
     if target in data:
         set_xrandr(data[target], monitors)
