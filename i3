@@ -10,9 +10,6 @@ exec_always --no-startup-id (killall compton || true) && compton --backend glx -
 # network monitor applet
 exec_always --no-startup-id (killall nm-applet || true) && nm-applet
 
-# Workaround to auto set the dpi
-exec_always --no-startup-id ~/bin/set_dpi.sh
-
 # Set minimum brightness that can be set by light
 exec --no-startup-id light -N 5
 
