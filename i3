@@ -2,7 +2,7 @@
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:Roboto Sans Mono 10
 
-exec_always --no-startup-id ~/bin/setup_monitors.py
+exec_always --no-startup-id ~/bin/setup_monitors.py setup --startup
 
 # Use compton for vsync, alpha transparency etc..
 exec_always --no-startup-id (killall compton || true) && compton --backend glx --vsync opengl-swc

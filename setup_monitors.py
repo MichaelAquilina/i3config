@@ -49,11 +49,11 @@ def write_configuration(config: Dict) -> None:
         json.dump(config, fp)
 
 
-def restart_i3():
+def restart_i3() -> None:
     subprocess.run(["i3-msg", "restart"])
 
 
-def set_xrandr(target, config, monitors):
+def set_xrandr(target: str, config: Dict, monitors: Dict[str, str]) -> None:
     params = ["xrandr", "--nograb"]
     used_monitors = set()
 
@@ -72,7 +72,7 @@ def set_xrandr(target, config, monitors):
     config["current"] = config[target]
 
 
-def show_rofi():
+def show_rofi() -> None:
     """
     Shows rofi launcher that allows user to select desired setup for list of connected
     monitors. Will save the configuration to xrandr_config.json for auto-setup when
@@ -137,19 +137,23 @@ def show_rofi():
         restart_i3()
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command")
+    subparsers = parser.add_subparsers(dest="command")
+
+    rofi_parser = subparsers.add_parser("rofi")
+    setup_parser = subparsers.add_parser("setup")
+    setup_parser.add_argument("--startup", "-s", action="store_true")
 
     args = parser.parse_args()
 
     if args.command == "setup":
-        setup()
+        setup(args.startup)
     elif args.command == "rofi":
         show_rofi()
 
 
-def setup():
+def setup(startup: bool) -> None:
     """
     Attempts to setup monitors using previously selected mechanism for the current state.
     If no previous mechanism was set for the current state - turn on all connected monitors.
@@ -165,8 +169,8 @@ def setup():
 
     if target in config:
         # If current configuration is already the same as the target then dont bother
-        # running xrandr
-        if config.get(target) == config.get("current"):
+        # running xrandr. Ignore this check if the startup option is enabled.
+        if not startup and config.get(target) == config.get("current"):
             return
 
         set_xrandr(target, config, monitors)
