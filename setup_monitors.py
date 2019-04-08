@@ -43,21 +43,21 @@ def load_configuration() -> Dict:
         return {}
 
 
-def write_configuration(data: Dict) -> None:
+def write_configuration(config: Dict) -> None:
     path = os.path.expanduser("~/.xrandr_config.json")
     with open(path, "w") as fp:
-        json.dump(data, fp)
+        json.dump(config, fp)
 
 
 def restart_i3():
     subprocess.run(["i3-msg", "restart"])
 
 
-def set_xrandr(data, monitors):
+def set_xrandr(target, config, monitors):
     params = ["xrandr", "--nograb"]
     used_monitors = set()
 
-    for entry in data:
+    for entry in config[target]:
         params.extend(["--output", entry["output"]])
         params.extend(entry["params"])
 
@@ -69,6 +69,7 @@ def set_xrandr(data, monitors):
 
     print(f"Running {params}", file=sys.stderr)
     subprocess.run(params)
+    config["current"] = config[target]
 
 
 def show_rofi():
@@ -127,11 +128,10 @@ def show_rofi():
         config = load_configuration()
 
         data = rofi_data[selection]
-
-        set_xrandr(data, monitors)
-
         target = get_setup_key(monitors)
+
         config[target] = data
+        set_xrandr(target, config, monitors)
 
         write_configuration(config)
         restart_i3()
@@ -158,12 +158,19 @@ def setup():
     """
     monitors = get_monitors()
     target = get_setup_key(monitors)
+
     print(target)
 
     config = load_configuration()
 
-    if target in data:
-        set_xrandr(config[target], monitors)
+    if target in config:
+        # If current configuration is already the same as the target then dont bother
+        # running xrandr
+        if config[target] == config.get("current"):
+            return
+
+        set_xrandr(target, config, monitors)
+        write_configuration(config)
         return
     else:
         print("Unable to find matching configuration. Will turn on all connected monitors", file=sys.stderr)
