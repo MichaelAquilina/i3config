@@ -34,6 +34,21 @@ def get_monitors() -> Dict[str, str]:
     return monitors
 
 
+def load_configuration() -> Dict:
+    try:
+        path = os.path.expanduser("~/.xrandr_config.json")
+        with open(path, "r") as fp:
+            return json.load(fp)
+    except FileNotFoundError:
+        return {}
+
+
+def write_configuration(data: Dict) -> None:
+    path = os.path.expanduser("~/.xrandr_config.json")
+    with open(path, "w") as fp:
+        json.dump(data, fp)
+
+
 def restart_i3():
     subprocess.run(["i3-msg", "restart"])
 
@@ -107,18 +122,19 @@ def show_rofi():
 
     selection = result.stdout.decode("utf-8").strip()
 
+
     if selection:
-        print(selection)
+        config = load_configuration()
+
         data = rofi_data[selection]
 
         set_xrandr(data, monitors)
-        restart_i3()
 
         target = get_setup_key(monitors)
-        path = os.path.expanduser("~/.xrandr_config.json")
+        config[target] = data
 
-        with open(path, "w") as fp:
-            json.dump({target: data}, fp)
+        write_configuration(config)
+        restart_i3()
 
 
 def main():
@@ -144,16 +160,10 @@ def setup():
     target = get_setup_key(monitors)
     print(target)
 
-    path = os.path.expanduser("~/.xrandr_config.json")
-
-    try:
-        with open(path, "r")  as fp:
-            data = json.load(fp)
-    except FileNotFoundError:
-        data = {}
+    config = load_configuration()
 
     if target in data:
-        set_xrandr(data[target], monitors)
+        set_xrandr(config[target], monitors)
         return
     else:
         print("Unable to find matching configuration. Will turn on all connected monitors", file=sys.stderr)
@@ -166,7 +176,7 @@ def setup():
                 ],
             })
 
-        set_xrandr(data, monitors)
+        set_xrandr(config, monitors)
 
 
 if __name__ == "__main__":
