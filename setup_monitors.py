@@ -166,7 +166,7 @@ def setup():
     if target in config:
         # If current configuration is already the same as the target then dont bother
         # running xrandr
-        if config[target] == config.get("current"):
+        if config.get(target) == config.get("current"):
             return
 
         set_xrandr(target, config, monitors)
@@ -174,16 +174,17 @@ def setup():
         return
     else:
         print("Unable to find matching configuration. Will turn on all connected monitors", file=sys.stderr)
-        data = []
+        config[target] = []
         for key, mon in monitors.items():
-            data.append({
+            config[target].append({
                 "output": key,
                 "params": [
                     "--auto" if mon["state"] == "connected" else "--off"
                 ],
             })
 
-        set_xrandr(config, monitors)
+        set_xrandr(target, config, monitors)
+        write_configuration(config)
 
 
 if __name__ == "__main__":
