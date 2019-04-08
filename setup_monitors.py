@@ -119,7 +119,7 @@ def show_rofi() -> None:
     result = subprocess.run([
         "rofi",
         "-dmenu", "-p",
-        "Monitor setup 2", "-a", "0", "-no-custom"], input=data, stdout=subprocess.PIPE)
+        "Monitor setup 2", "-no-custom"], input=data, stdout=subprocess.PIPE)
 
     selection = result.stdout.decode("utf-8").strip()
 
