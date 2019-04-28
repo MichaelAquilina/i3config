@@ -26,7 +26,7 @@ focus_follows_mouse no
 exec_always --no-startup-id (killall polybar || true) && polybar top --config=$HOME/.config/polybar/config
 
 # Lock screen
-exec_always --no-startup-id (killall xautolock || true) && xautolock -time 5 -locker $HOME/bin/lock_screen.sh
+exec_always --no-startup-id (killall xidlehook || true) && $HOME/.cargo/bin/xidlehook --not-when-fullscreen --timer primary 300 $HOME/bin/lock_screen.sh ""
 bindsym Mod1+l exec $HOME/bin/lock_screen.sh
 
 # kill focused window
