@@ -2,8 +2,8 @@ install:
 	mkdir -p $$HOME/.config/i3
 	mkdir -p $$HOME/.config/i3blocks
 	mkdir -p $$HOME/.config/polybar
-	mkdir -p $$HOME/dunst/
-	mkdir -p $$HOME/rofi/
+	mkdir -p $$HOME/.config/dunst/
+	mkdir -p $$HOME/.config/rofi/
 	ln -sf $$PWD/i3 $$HOME/.config/i3/config
 	ln -sf $$PWD/i3blocks $$HOME/.config/i3blocks/config
 	ln -sf $$PWD/dunstrc $$HOME/.config/dunst/dunstrc
